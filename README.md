@@ -1,24 +1,54 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
+|Column   |Type   |Options                   |
+|---------|-------|--------------------------|
+|nickname |string |null: false               |
+|email    |string |null: false, unique: true |
+|password |string |null: false               |
+|pw_conf' |string |null: false               |
 
-Things you may want to cover:
+### Association
+ has_many :items
+ has_many :buying_histories
 
-* Ruby version
+ ## items table
+|Column|Type|Options                          |
+|------|---------------|----------------------|
+|item_name    |string  |null: false           |
+|price        |integer |null: false           |
+|image        |string  |null: false           |
+|seller_name  |string  |null: false           |
+|category     |string  |null: false           |
+|quality      |string  |null: false           |
+|delivery_fee |string  |null: false           |
+|shipping_date| string |null: false           |
 
-* System dependencies
+### Association
+belongs_to :user
+has_one :buying_history
 
-* Configuration
 
-* Database creation
+## buying_histories table
+|Column    |Type    |Options   |
+|--------- |--------|----------|
+|purchased |boolean |----------|
 
-* Database initialization
+### Association
+has_one :item
+belongs_to :users
+belongs_to :addresses 
 
-* How to run the test suite
+## addresses table
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column|Type |Options              |
+|------|-----|---------------------|
+|postal_code |integer |null: false |
+|prefecture  |string  |null: false |
+|city        |string  |null: false |
+|street      |string  |null: false |
+|phone_number|integer |null: false |
 
-* Deployment instructions
 
-* ...
+### Association
+has_many :buying_histories
