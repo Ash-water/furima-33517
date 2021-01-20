@@ -10,6 +10,7 @@
 |first_name |string     |null: false |
 |furi_last  |string     |null: false |
 |furi_first |string     |null: false |
+|date_of_birth|integer  |null: false |
 
 ### Association
  has_many :items
@@ -26,6 +27,7 @@
 |delivery_fee_id |integer  |null: false                           |
 |prefecture_id |integer |null: false
 |shipping_date_id|integer  |null: false                           |
+|user |references |foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -37,7 +39,6 @@ has_one :buying_history
 |--------- |--------|----------|
 |user |references |foreign_key: true |
 |item |references |foreign_key: true |
-|address|references| foreign_key: true|
 
 ### Association
 has_one :address
