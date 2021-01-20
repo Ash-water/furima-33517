@@ -10,8 +10,6 @@
 |first_name |string     |null: false |
 |furi_last  |string     |null: false |
 |furi_first |string     |null: false |
-|item       |references |null: false, foreign_key: true                     |
-|buying his |references |null: false, foreign_key: true                     |
 
 ### Association
  has_many :items
@@ -20,15 +18,14 @@
  ## items table
 |Column|Type           |Options                               |
 |----------------------|--------------------------------------|
-|item_name    |string  |null: false                           |
+|name    |string  |null: false                           |
 |price        |integer |null: false                           |
-|seller_name  |string  |null: false                           |
 |item_description|text |null: false
 |category_id     |integer  |null: false                           |
 |quality_id      |integer  |null: false                           |
 |delivery_fee_id |integer  |null: false                           |
 |prefecture_id |integer |null: false
-|shipping_date|integer  |null: false                           |
+|shipping_date_id|integer  |null: false                           |
 
 ### Association
 belongs_to :user
@@ -39,12 +36,13 @@ has_one :buying_history
 |Column    |Type    |Options   |
 |--------- |--------|----------|
 |user |references |foreign_key: true |
-|items|references |foreign_key: true |
+|item |references |foreign_key: true |
+|address|references| foreign_key: true|
 
 ### Association
-has_one :item
-belongs_to :users
-belongs_to :addresses 
+has_one :address
+belongs_to :user
+belongs_to :item
 
 ## addresses table
 
@@ -54,9 +52,10 @@ belongs_to :addresses
 |prefecture_id  |integer  |null: false |
 |city        |string  |null: false |
 |street      |string  |null: false |
-|building_name |string |null: false |
+|building_name |string |    |
 |phone_number|string |null: false |
+|buying_history|references |null: false, foreign_key: true |
 
 
 ### Association
-has_many :buying_histories
+belongs_to :buying_histories
