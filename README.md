@@ -13,13 +13,13 @@
 |date_of_birth|date     |null: false |
 
 ### Association
- has_many :items
- has_many :buying_histories
+has_many :items
+has_many :buying_history
 
- ## items table
+## items table
 |Column|Type           |Options                               |
-|----------------------|--------------------------------------|
-|name    |string  |null: false                           |
+|------|---------------|--------------------------------------|
+|name  |string  |null: false                           |
 |price        |integer |null: false                           |
 |item_description|text |null: false
 |category_id     |integer  |null: false                           |
