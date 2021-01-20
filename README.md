@@ -14,7 +14,7 @@
 
 ### Association
 has_many :items
-has_many :buying_history
+has_many :buying_histories
 
 ## items table
 |Column           |Type            |Options                               |
@@ -59,4 +59,4 @@ belongs_to :item
 
 
 ### Association
-belongs_to :buying_histories
+belongs_to :buying_history
