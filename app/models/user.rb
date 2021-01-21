@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # 新規登録/ユーザー情報バリデーション
   validates :nickname, presence: true
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'パスワードには英字と数字の両方を含めて設定してください'
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には半角英字数字の混合で入力してください'
 
   # 新規登録/本人情報確認
   with_options presence: true do
