@@ -6,12 +6,12 @@ class User < ApplicationRecord
 
   # 新規登録/ユーザー情報バリデーション
   validates :nickname, presence: true
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'パスワードには英字と数字の両方を含めて設定してください'  
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'パスワードには英字と数字の両方を含めて設定してください'
 
   # 新規登録/本人情報確認
   with_options presence: true do
-    validates :last_name 
+    validates :last_name
     validates :first_name
     validates :last_name
     validates :furi_first
@@ -24,9 +24,8 @@ class User < ApplicationRecord
     validates :last_name
   end
 
-  with_options format: {with: /\A[ァ-ヶー－]+\z/, message: 'カタカナを使用してください'} do
+  with_options format: { with: /\A[ァ-ヶー－]+\z/, message: 'カタカナを使用してください' } do
     validates :furi_last
     validates :furi_first
   end
-
 end
