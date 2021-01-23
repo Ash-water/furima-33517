@@ -4,20 +4,25 @@ class Item < ApplicationRecord
   has_one_attached :image
   #Assosiations with ActiveHash
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :prefecture, :delivery_fee, :quality, :shipping_date,
+  belongs_to :category
+  belongs_to :prefecture 
+  belongs_to :delivery_fee 
+  belongs_to :quality
+  belongs_to :shipping_date
 
-  #validations
-  with_options presence: true do
-    validates :name
-    validates :price
-    validates :item_description
-    validates :category_id
-    validates :quality_id
-    validates :delivery_fee_id
-    validates :prefecture_id
-    validates :shipping_data_id
-    validates :user
-  end
+    #validations
+    with_options presence: true do
+      validates :name
+      validates :price
+      validates :item_description
+      validates :category_id
+      validates :quality_id
+      validates :delivery_fee_id
+      validates :prefecture_id
+      validates :shipping_data_id
+      validates :user
+    end
+  
     #price validates
     validates :price, :numericality => {
       :greater_than_or_equal_to => 300,
