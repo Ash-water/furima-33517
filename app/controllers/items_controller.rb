@@ -7,5 +7,11 @@ class ItemsController < ApplicationController
   end
 
   def create
+
   end
+
+  private
+  
+  def item_params
+    params
 end
