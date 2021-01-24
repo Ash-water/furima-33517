@@ -19,7 +19,7 @@ class Item < ApplicationRecord
       validates :quality_id
       validates :delivery_fee_id
       validates :prefecture_id
-      validates :shipping_data_id
+      validates :shipping_date_id
       validates :user
     end
   
