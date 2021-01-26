@@ -23,6 +23,14 @@ class Item < ApplicationRecord
       validates :shipping_date_id
       validates :user
     end
+    # validations for ActiveHash ID, the ID can't be 1
+    with_options numericality: {other_than: 1} do
+      validates :category_id
+      validates :quality_id
+      validates :delivery_fee_id
+      validates :prefecture_id
+      validates :shipping_date_id
+    end
   
     #price validates
     validates :price, numericality: { with: /\A[0-9]+\z/, message: "数字以外が入力されています"}

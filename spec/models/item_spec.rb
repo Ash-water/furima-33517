@@ -58,8 +58,38 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格の範囲が¥300~¥9,999,999の間であること' do
-        @item.price = 100
+      it 'category_idが1の場合は出品できないこと' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it 'delivery_fee_idが1の場合は出品できないこと' do
+        @item.delivery_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      end
+      it 'prefecture_idが１の場合は出品できないこと' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+      it 'quality_idが1の場合は出品できないこと' do
+        @item.quality_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Quality must be other than 1")
+      end
+      it 'shipping_date_idが1の場合は出品できないこと' do
+        @item.shipping_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
+      end
+      it '価格の範囲が¥300以下では出品できないこと' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 値段は300円~9,999,999円の範囲内で設定してください")
+      end
+      it '価格の範囲が¥9,999,999以上では出品できないこと' do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price 値段は300円~9,999,999円の範囲内で設定してください")
       end
