@@ -25,11 +25,12 @@ class Item < ApplicationRecord
     end
   
     #price validates
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: "数字以外が入力されています"}
     validates :price, :numericality => {
       :greater_than_or_equal_to => 300,
       :less_than_or_equal_to => 9999999,
       :message => '値段は300円~9,999,999円の範囲内で設定してください' 
     }
-    validates :price, format: { with: /\A[0-9]+\z/, message: "数字以外が入力されています"}
+    
 
 end
