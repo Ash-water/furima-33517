@@ -96,10 +96,19 @@ RSpec.describe Item, type: :model do
       it '販売価格は半角数字のみ保存可能であること' do
         @item.price = "aaaaa"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 数字以外が入力されています")
+        expect(@item.errors.full_messages).to include("Price 半角数字以外が入力されています")
+      end
+      it '販売価格は全角文字では保存できないこと' do
+        @item.price = 'あああああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字以外が入力されています")
+      end
+      it '販売価格は英数字混合では登録できないこと' do
+        @item.price = "あああ111"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角数字以外が入力されています")
       end
     end
 
   end
 end
-

@@ -33,7 +33,7 @@ class Item < ApplicationRecord
     end
   
     #price validates
-    validates :price, numericality: { with: /\A[0-9]+\z/, message: "数字以外が入力されています"}
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: "半角数字以外が入力されています"}
     validates :price, numericality: {
       greater_than_or_equal_to: 300,
       less_than_or_equal_to: 9999999,
