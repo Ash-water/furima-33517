@@ -12,14 +12,14 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-    redirect_to root_path
+      redirect_to root_path
     else
-    render 'new'
+      render 'new'
     end
   end
 
   private
-  
+
   def item_params
     params.require(:item).permit(
       :image, :name, :item_description, :category_id, :prefecture_id, :quality_id, :shipping_date_id, :delivery_fee_id, :price
