@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # アソシエーション
   has_many :items
+  has_many :purchases
 
   # 新規登録/ユーザー情報バリデーション
   validates :nickname, presence: true
