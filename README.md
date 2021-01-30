@@ -34,7 +34,7 @@ belongs_to :user
 has_one :buying_history
 
 
-## buying_histories table
+## purchases table
 |Column    |Type       |Options           |
 |--------- |-----------|------------------|
 |user      |references |foreign_key: true |
