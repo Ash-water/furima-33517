@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       @purchase_form.save
       redirect_to root_path
     else
-      render "orders#index"
+      render "index"
     end
   end
 
