@@ -13,8 +13,8 @@ class PurchaseForm
     validates :phone_number
   end
 
-    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "has to be included with hyphen" }
-    validates :phone_number, format: {with: /\A\d{11}\z/, message: "has to be 11characters"}
+    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "has to be include hyphen" }
+    validates :phone_number, format: {with: /\A\d{11}\z/, message: "has to be only 11numbers"}
   
     #purchase validation
   with_options presence: true do
