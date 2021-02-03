@@ -2,13 +2,12 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @item = FactoryBot.create(:item) #itemをまず生成して、それに紐づくuser生成されます。それをしたの記述でmergeしてる感じ.fakerを使うことでユーザーの重複も解消できる
-    @purchase_form = FactoryBot.build(:purchase_form, user_id:@item.user_id, item_id:@item.id)
+    @item = FactoryBot.create(:item) # itemをまず生成して、それに紐づくuser生成されます。それをしたの記述でmergeしてる感じ.fakerを使うことでユーザーの重複も解消できる
+    @purchase_form = FactoryBot.build(:purchase_form, user_id: @item.user_id, item_id: @item.id)
     sleep 1
   end
 
   describe '商品購入機能' do
-
     context '商品が購入できる時' do
       it '必須情報が全て適切に入力されている' do
         expect(@purchase_form).to be_valid
@@ -22,9 +21,9 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchase_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないと購入できない' do
-        @purchase_form.postal_code = 1234567
+        @purchase_form.postal_code = 1_234_567
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Postal code has to be include hyphen")
+        expect(@purchase_form.errors.full_messages).to include('Postal code has to be include hyphen')
       end
       it '都道府県がないと購入できない' do
         @purchase_form.prefecture_id = ''
@@ -49,15 +48,13 @@ RSpec.describe PurchaseForm, type: :model do
       it '電話番号にハイフンを使うと購入できない' do
         @purchase_form.phone_number = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages). to include("Phone number has to be only 11numbers")
+        expect(@purchase_form.errors.full_messages).to include('Phone number has to be only 11numbers')
       end
       it 'トークンが存在しないと購入できない' do
         @purchase_form.token = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages). to include("Token can't be blank")
+        expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
       end
     end
-
   end
-
 end
