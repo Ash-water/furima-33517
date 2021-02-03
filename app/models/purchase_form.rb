@@ -2,7 +2,7 @@ class PurchaseForm
   
   include ActiveModel::Model
   #attr_accrsssorでここで取り扱う値を設定
-  attr_accessor :postal_code, :prefecture_id, :street, :city, :building_name, :phone_number, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :street, :city, :building_name, :phone_number, :user_id, :item_id,:token
   
   #addres validation
   with_options presence: true do
@@ -22,6 +22,8 @@ class PurchaseForm
     validates :item_id
   end
 
+    #token validation
+    validates :token, presence: true 
 
   #saveメソッドを定義テーブルごとにcreateメソッドを適用させていくイメージ
   def save
