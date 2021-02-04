@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :seller_move_to_index, only:[:index, :create]
+  before_action :sold_item_redirect, only:[:index, :create]
   def index
-    @item = Item.find(params[:item_id])
     @purchase_form = PurchaseForm.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_form = PurchaseForm.new(purchase_form_params)
     if @purchase_form.valid?
       purchase_item
@@ -17,6 +19,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_form_params
     params.require(:purchase_form).permit(:postal_code, :prefecture_id, :street, :city, :building_name, :phone_number).merge(
@@ -32,4 +38,16 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def seller_move_to_index
+    if user_signed_in? && current_user.id == @item.user.id
+      redirect_to root_path
+    end
+  end
+
+  def sold_item_redirect
+    if user_signed_in? && @item.purchase != nil
+      redirect_to root_path
+    end
+  end  
 end
