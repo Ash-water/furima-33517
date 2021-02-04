@@ -36,9 +36,9 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-    redirect_to root_path
+      redirect_to root_path
     else
-    render "show"
+      render 'show'
     end
   end
 
@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path if user_signed_in? && current_user.id != @item.user.id
+    redirect_to root_path if current_user.id != @item.user.id || @item.purchase != nil
   end
+
 end

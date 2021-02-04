@@ -14,7 +14,7 @@
 
 ### Association
 has_many :items
-has_many :buying_histories
+has_many :purchases
 
 ## items table
 |Column           |Type            |Options                               |
@@ -31,10 +31,10 @@ has_many :buying_histories
 
 ### Association
 belongs_to :user
-has_one :buying_history
+has_one :purchase
 
 
-## buying_histories table
+## purchases table
 |Column    |Type       |Options           |
 |--------- |-----------|------------------|
 |user      |references |foreign_key: true |
@@ -55,8 +55,8 @@ belongs_to :item
 |street         |string     |null: false          |
 |building_name  |string     |                     |
 |phone_number   |string     |null: false          |
-|buying_history |references |null: false, foreign_key: true |
+|purchase |references |null: false, foreign_key: true |
 
 
 ### Association
-belongs_to :buying_history
+belongs_to :purchase
