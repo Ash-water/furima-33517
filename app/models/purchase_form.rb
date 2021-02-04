@@ -10,6 +10,9 @@ class PurchaseForm
     validates :city
     validates :street
     validates :phone_number
+    validates :user_id
+    validates :item_id
+    validates :token, presence: true
   end
 
   validates :prefecture_id, numericality: true
@@ -17,15 +20,6 @@ class PurchaseForm
 
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'has to be include hyphen' }
   validates :phone_number, format: { with: /\A\d{11}\z/, message: 'has to be only 11numbers' }
-
-  # purchase validation
-  with_options presence: true do
-    validates :user_id
-    validates :item_id
-  end
-
-  # token validation
-  validates :token, presence: true
 
   # saveメソッドを定義テーブルごとにcreateメソッドを適用させていくイメージ
   def save

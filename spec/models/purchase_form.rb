@@ -60,6 +60,11 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include('Phone number has to be only 11numbers')
       end
+      it '電話番号が１２桁以上だと購入できない' do
+        @purchase_form.phone_number = '123456789111'
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include('Phone number has to be only 11numbers')
+      end
       it 'トークンが存在しないと購入できない' do
         @purchase_form.token = ''
         @purchase_form.valid?
