@@ -26,7 +26,7 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchase_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号にハイフンがないと購入できない' do
-        @purchase_form.postal_code = 1_234_567
+        @purchase_form.postal_code = "1_234_567"
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include('Postal code has to be include hyphen')
       end
@@ -62,6 +62,11 @@ RSpec.describe PurchaseForm, type: :model do
       end
       it '電話番号が１２桁以上だと購入できない' do
         @purchase_form.phone_number = '123456789111'
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include('Phone number has to be only 11numbers')
+      end
+      it '電話番号が英数字混合だと購入できない' do
+        @purchase_form.phone_number = '1234abcdefg'
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include('Phone number has to be only 11numbers')
       end
