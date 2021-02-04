@@ -15,9 +15,7 @@ class PurchaseForm
     validates :token, presence: true
   end
 
-  validates :prefecture_id, numericality: true
   validates  :prefecture_id, numericality: { other_than: 1 }
-
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'has to be include hyphen' }
   validates :phone_number, format: { with: /\A\d{11}\z/, message: 'has to be only 11numbers' }
 
